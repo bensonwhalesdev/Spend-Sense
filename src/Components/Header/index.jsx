@@ -27,7 +27,7 @@ const Header = () => {
 
         <div className="hidden md:flex space-x-4">
           <Button text="Login" classStyle="px-5 py-2 rounded-[10px] bg-white text-black font-semibold hover:bg-gray-200 transition-colors" onClick={handleClick} />
-          <Button text="Sign Up" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors" onClick={handleClick} />
+          <Button text="Start your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors" onClick={handleClick} />
         </div>
 
         {/* Hamburger Menu Button (Mobile) */}

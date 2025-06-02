@@ -1,0 +1,32 @@
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float-animation {
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@media (max-width: 570px) {
+ .float-animation{
+    width: 400px;
+ }
+}
+@media (max-width: 493px) {
+ .float-animation{
+    width: 300px;
+    margin-top: -50px;
+ }
+}
+@media (max-width: 380px) {
+ .float-animation{
+    width: 250px;
+ }
+}
