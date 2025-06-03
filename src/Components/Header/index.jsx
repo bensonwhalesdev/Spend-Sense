@@ -39,21 +39,25 @@ const Header = () => {
       </nav>
 
       {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-[#1C1F58] w-[90%] mx-auto pb-4">
-          <ul className="flex flex-col gap-4 list-none text-center">
-            <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">Why Spend-Sense</li>
-            <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">What You Get</li>
-            <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">Contact Us</li>
-          </ul>
+    {isMenuOpen && (
+    <div className="md:hidden fixed top-0 right-0 h-full w-2/3 max-w-xs bg-[#D5D5E0] shadow-lg z-50 p-6 transition-all opacity-95">
+    
+    <div className="flex justify-end">
+      <button onClick={() => setIsMenuOpen(false)} className="text-2xl font-bold text-[#1C1F58] hover:text-red-500 transition">x</button>
+    </div>
 
-          <div className="flex flex-col gap-4 mt-4">
-            <Button text="Login" classStyle="px-5 py-2 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors" onClick={handleClick}/>
-            <Button text="Sign Up" classStyle="px-5 py-2 rounded-full bg-blue-500 text-white font-semibold hover:bg-blue-600 transition-colors" onClick={handleClick} />
-          </div>
-        </div>
-      )}
-    </header>
+    <ul className="flex flex-col gap-6 text-center mt-6">
+      <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer hover:underline">Why Spend-Sense</li>
+      <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer hover:underline">What You Get</li>
+      <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer hover:underline">Contact Us</li>
+    </ul>
+
+    <div className="mt-8 flex flex-col gap-4 items-center">
+      <Button text="Login" classStyle="bg-[#1C1F58] text-white px-6 py-2 rounded hover:bg-[#333A8E] transition" onClick={handleClick} />
+      <Button text="Start Your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-[#fff] font-semibold hover:bg-green-600 transition-colors" onClick={handleClick} />
+    </div>
+  </div>)}
+ </header>
   );
 };
 
