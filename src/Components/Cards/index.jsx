@@ -4,7 +4,7 @@ import 'animate.css';
 import "./style.css"
 
 const Card = ({ h3text, ptext, classStyle }) => {
-  const { ref, inView } = useInView({
+  const [ ref, inView ] = useInView({
     triggerOnce: true, 
     threshold: 0.3,
   });
