@@ -3,6 +3,8 @@ import HeroSection from "./Components/HeroSection"
 import "./App.css"
 import SecondSection from "./Components/SecondSection"
 import ThirdSection from "./Components/ThirdSection"
+import FourthSection from "./Components/BarChart"
+
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
      <HeroSection />
      <SecondSection />
      <ThirdSection />
+     <FourthSection />
     </>
   )
 }
