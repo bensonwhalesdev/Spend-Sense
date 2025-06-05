@@ -3,12 +3,12 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } fro
 
 const FourthSection = () => {
   const data = [
-    { name: "Jan", spent: 700, saved: 300 },
-    { name: "Feb", spent: 500, saved: 400 },
-    { name: "Mar", spent: 800, saved: 200 },
-    { name: "Apr", spent: 600, saved: 278 },
-    { name: "May", spent: 650, saved: 350 },
-    { name: "Jun", spent: 400, saved: 339 },
+    { name: "Jan", spent: 100000, saved: 34500 },
+    { name: "Feb", spent: 65500, saved: 90400 },
+    { name: "Mar", spent: 78800, saved: 20000 },
+    { name: "Apr", spent: 60890, saved: 10278 },
+    { name: "May", spent: 69750, saved: 54350 },
+    { name: "Jun", spent: 42700, saved: 38539 },
   ];
 
   return (

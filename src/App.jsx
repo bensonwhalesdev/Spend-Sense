@@ -1,24 +1,17 @@
-import Header from "./Components/Header"
-import HeroSection from "./Components/HeroSection"
-import "./App.css"
-import SecondSection from "./Components/SecondSection"
-import ThirdSection from "./Components/ThirdSection"
-import FourthSection from "./Components/BarChart"
-
-
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./Components/LandingPage/landingpage";
+import ContactPage from "./Components/ContactPage";
 
 function App() {
-
-
   return (
-    <>
-     <Header />
-     <HeroSection />
-     <SecondSection />
-     <ThirdSection />
-     <FourthSection />
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
