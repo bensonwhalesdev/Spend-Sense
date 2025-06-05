@@ -17,7 +17,7 @@ const Sidebar = () => {
     setAccounts(newAccounts);
   }
   return (
-    <div className="w-[250px] min-h-screen bg-[#12134C] text-white p-4 flex flex-col gap-6">
+    <div className="w-[20%] min-h-screen bg-[#12134C] text-white p-4 flex flex-col gap-6">
       {/* Plan & Email */}
       <div className="mb-4">
         <h2 className="text-lg font-bold">Benson's Plan</h2>
