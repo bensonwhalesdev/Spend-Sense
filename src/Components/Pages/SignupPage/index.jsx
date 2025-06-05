@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../LandingPage/Header'
-import SignUp from '../LandingPage/Forms/signup'
+import Header from '../../LandingPage/Header'
+import SignUp from '../../LandingPage/Forms/signup'
 
 const SignupPage = () => {
   return (

@@ -2,8 +2,10 @@ import axios from "axios";
 import Button from "../Button";
 import "./signup.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -23,13 +25,14 @@ const SignUp = () => {
     const response = await axios.post("http://localhost:3000/api/v1/users", formData)
     console.log(response.data)
     setFormData({firstname: "", lastname: "", age: "", password: "", role: "user"})
+     navigate("/dashboard");
    } catch (error) {
    console.log(error.message);
    }
     
   }
   return (
-    <div className="w-[500px] rounded-[10px] bg-[#1C1F58] px-5 py-11 text-black shadow-[0_5px_15px_#00000059] float-animation">
+    <div className="w-[500px] rounded-[10px] bg-[#1C1F58] px-5 py-4 text-black shadow-[#1C1F58] shadow-lg hover:shadow-2xl float-animation">
       <form onSubmit={submitHandler} claction="" className="relative flex flex-col items-center gap-7">
         <span className="mb-2.5 text-center text-xl font-bold text-white">Sign Up</span>
 
