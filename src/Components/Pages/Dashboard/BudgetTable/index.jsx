@@ -18,7 +18,7 @@ const BudgetTable = () => {
   ];
 
   return (
-    <div className="w-[60%]">
+    <div>
       <table className="w-full text-left">
         <thead>
           <tr className="text-gray-500 text-sm">

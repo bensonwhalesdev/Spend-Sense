@@ -2,7 +2,7 @@ import { Zap } from "lucide-react";
 
 const SummaryPanel = () => {
   return (
-    <aside className="w-[20%] p-4 border-l bg-gray-50 flex flex-col gap-6">
+    <aside className="p-4 bg-gray-50 flex flex-col gap-6">
       <div>
         <h2 className="font-semibold text-gray-700">June's Summary</h2>
         <div className="text-sm mt-2">
