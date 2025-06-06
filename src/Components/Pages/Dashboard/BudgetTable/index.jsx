@@ -81,9 +81,9 @@ const BudgetTable = () => {
                   <td className="p-2">
                     <input type="number" value={item.amount === null ? "" : item.amount} onChange={(e) => handleAmountChange(groupIndex, itemIndex, e.target.value)} placeholder="0.00" className="w-24 p-1 border border-gray-300 rounded text-sm"/>
                   </td>
-                  <td className="p-2">$0.00</td>
+                  <td className="p-2">₦0.00</td>
                   <td className="p-2">
-                    <span className={`px-2 py-1 rounded text-white ${item.amount ? "bg-green-500" : "bg-gray-300"}`}>${item.amount ? item.amount.toFixed(2) : "0.00"}</span>
+                    <span className={`px-2 py-1 rounded text-white ${item.amount ? "bg-green-500" : "bg-gray-300"}`}>₦{item.amount ? item.amount.toFixed(2) : "0.00"}</span>
                   </td>
                 </tr>
               ))}
@@ -97,7 +97,7 @@ const BudgetTable = () => {
           
           <tr className="bg-blue-100 font-semibold text-sm">
             <td colSpan="3" className="p-2 text-right">Total Available:</td>
-            <td className="p-2 bg-green-300 text-black">${totalAvailable.toFixed(2)}</td>
+            <td className="p-2 bg-green-300 text-black">₦{totalAvailable.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>

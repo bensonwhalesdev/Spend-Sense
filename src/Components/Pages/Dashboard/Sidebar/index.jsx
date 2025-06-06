@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Home, PieChart, Wallet, PlusCircle, ChevronDown, Trash2, Menu } from "lucide-react";
 import Button from "../../../LandingPage/Button";
 import axios from "axios";
+import 'animate.css'
 
 const Sidebar = () => {
   const [accounts, setAccounts] = useState([]);
@@ -43,7 +44,7 @@ useEffect(() => {
   }
   
   return (
-    <div className={`min-h-screen bg-[#12134C] text-white p-4 flex flex-col gap-6 transition-all duration-300 ${collapsed ? "w-[80px]" : "w-[250px]"}`}>
+    <div className={`min-h-screen bg-[#12134C] text-white p-4 flex flex-col gap-6 transition-all animate__animated animate__fadeInLeft duration-300 ${collapsed ? "w-[80px]" : "w-[250px]"}`}>
       
       <button onClick={() => setCollapsed(!collapsed)} className="mb-4 text-white"><Menu className="w-6 h-6" /></button>
 

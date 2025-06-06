@@ -4,8 +4,14 @@ import SignUp from "../Forms/signup";
 import "animate.css";
 
 const HeroSection = () => {
+  //  const imageUrl = '/budgeting.webp';
   return (
-    <div className="relative bg-[#E9E9EF] rounded-br-[180px] overflow-hidden opacity-90">
+    <div className="relative bg-[#E9E9EF] rounded-br-[180px] overflow-hidden opacity-90" style={{
+    backgroundImage: `url(${''})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}>
       <div className="absolute top-20 w-full h-[100px] bg-[#1C1F58] clip-v-shape z-0"></div>
       <div className="relative z-10 flex flex-wrap lg:flex-row items-center justify-around px-10 pt-50 pb-20">
         <div className="max-w-xl mb-16 lg:mb-0 animate__animated animate__backInLeft">
@@ -26,7 +32,8 @@ const HeroSection = () => {
           </p>
         </div>
         <div className="mt-10 lg:mt-0 animate__animated animate__fadeInRight">
-          <SignUp />
+          {/* <SignUp /> */}
+          <img className="size-130 rounded-[10px]" src="/heroImg.jpg" alt="" />
         </div>
       </div>
     </div>

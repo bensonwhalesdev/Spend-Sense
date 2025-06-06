@@ -1,8 +1,9 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import 'animate.css';
 
 const HeaderBar = () => {
   return (
-    <header className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4 py-8 bg-white shadow-sm">
+    <header className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4 py-8 bg-white shadow-sm animate__animated animate__fadeInRight ">
 
       <div className="flex items-center flex-wrap gap-3">
         <div className="flex items-center gap-2">

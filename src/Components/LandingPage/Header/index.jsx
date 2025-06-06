@@ -31,10 +31,10 @@ const Header = () => {
         </ul>
 
         <div className="hidden md:flex space-x-4">
-          <Link to="/">
-          <Button text="Login" classStyle="px-5 py-2 rounded-[10px] bg-white text-black font-semibold hover:bg-gray-200 transition-colors" onClick={handleClick}/>
+          <Link to="/auth/login">
+          <Button text="Login" classStyle="px-5 py-2 rounded-[10px] bg-white text-black font-semibold hover:bg-gray-200 transition-colors cursor-pointer" onClick={handleClick}/>
           </Link>
-          <Button text="Start your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors" onClick={handleClick}/>
+          <Link to='/auth/signup'><Button text="Start your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors cursor-pointer" onClick={handleClick}/></Link>
         </div>
 
         {/* Hamburger Menu Button (Mobile) */}
@@ -59,12 +59,14 @@ const Header = () => {
           </ul>
 
           <div className="mt-8 flex flex-col gap-4 items-center">
-            <Button text="Login" classStyle="bg-[#1C1F58] text-white px-6 py-2 rounded hover:bg-[#333A8E] transition" onClick={handleClick}/>
-            <Button text="Start Your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-[#fff] font-semibold hover:bg-green-600 transition-colors" onClick={handleClick}/>
+            <Link to='/auth/login'><Button text="Login" classStyle="bg-[#1C1F58] text-white px-6 py-2 rounded hover:bg-[#333A8E] transition cursor-pointer" onClick={handleClick}/></Link>
+            <Link to='/auth/signup'><Button text="Start Your Free Trial" classStyle="px-5 py-2 rounded-[10px] bg-green-400 text-[#fff] font-semibold hover:bg-green-600 transition-colors cursor-pointer" onClick={handleClick}/></Link>
+            
           </div>
         </div>
       )}
     </header>
+
   );
 };
 
