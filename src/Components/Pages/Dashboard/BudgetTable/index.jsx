@@ -59,9 +59,9 @@ const BudgetTable = () => {
         <thead>
           <tr className="text-gray-500 text-sm">
             <th className="p-2">Category</th>
-            <th className="p-2">Assigned</th>
+            <th className="p-2">Assign</th>
             <th className="p-2">Activity</th>
-            <th className="p-2">Available</th>
+            <th className="p-2">Assigned</th>
           </tr>
         </thead>
         <tbody>
@@ -96,7 +96,7 @@ const BudgetTable = () => {
           ))}
           
           <tr className="bg-blue-100 font-semibold text-sm">
-            <td colSpan="3" className="p-2 text-right">Total Available:</td>
+            <td colSpan="3" className="p-2 text-right">Total Assigned:</td>
             <td className="p-2 bg-green-300 text-black">₦{totalAvailable.toFixed(2)}</td>
           </tr>
         </tbody>

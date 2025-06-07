@@ -10,9 +10,9 @@ const Register = () => {
       
         <div className="lg:flex-1 text-center lg:text-left text-white space-y-6 animate__animated animate__fadeInLeft">
           <div className='flex flex-wrap gap-4 items-center justify-center lg:justify-start'>
-            <Link to="/" className="text-sm border-b-3 pb-2 text-[1.5rem] text-gray-200 hover:text-white block mb-4">&larr; Back</Link>
-          <div className="text-center mb-4 text-[1.5rem] pb-2 border-b-3 text-sm text-gray-200 hover:text-white cursor-pointer">Already have an account?{' '}<Link to="/auth/login">Login</Link>
-          </div>
+            <Link to="/" className="text-sm border-b-3 pb-2 text-[1.5rem] text-gray-200 hover:text-white block mb-4">&larr; Home</Link>
+          <Link to="/auth/login" className="text-center mb-4 text-[1.5rem] pb-2 border-b-3 text-sm text-gray-200 hover:text-white cursor-pointer">Already have an account?{' '} Login
+          </Link>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">Try Spend-Sense free for 30 days</h1>

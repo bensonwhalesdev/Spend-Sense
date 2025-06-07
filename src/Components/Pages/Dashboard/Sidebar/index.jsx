@@ -17,7 +17,7 @@ useEffect(() => {
       const response = await axios.get(`http://localhost:3000/api/v1/users`);
 
       const users = response.data;
-      const userId = "684296ce16e354bb8d533afc";
+      const userId = "684400a3cf95bf2b97b32b20";
       const user = users.find(u => u._id === userId);
       console.log(user );
       setUserData(user);
@@ -44,7 +44,7 @@ useEffect(() => {
   }
   
   return (
-    <div className={`min-h-screen bg-[#12134C] text-white p-4 flex flex-col gap-6 transition-all animate__animated animate__fadeInLeft duration-300 ${collapsed ? "w-[80px]" : "w-[250px]"}`}>
+    <div className={`min-h-screen bg-[#12134C] text-white p-2 flex flex-col gap-6 transition-all animate__animated animate__fadeInLeft duration-300 ${collapsed ? "w-[80px]" : "w-[250px]"}`}>
       
       <button onClick={() => setCollapsed(!collapsed)} className="mb-4 text-white"><Menu className="w-6 h-6" /></button>
 
