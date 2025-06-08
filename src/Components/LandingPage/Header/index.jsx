@@ -21,9 +21,7 @@ const Header = () => {
         </div>
 
         <ul className="hidden md:flex gap-6 lg:gap-8 list-none">
-          <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">
-            Why Spend-Sense
-          </li>
+          <Link to='/whyspendsense' className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer" >Why Spend-Sense</Link>
           <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">
             What You Get
           </li>
@@ -53,7 +51,7 @@ const Header = () => {
           </div>
 
           <ul className="flex flex-col gap-6 text-center mt-6">
-            <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Why Spend-Sense</li>
+            <Link to='/whyspendsense' className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Why Spend-Sense</Link>
             <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">What You Get</li>
             <Link to="/contact"><li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Contact Us</li></Link>
           </ul>
