@@ -20,7 +20,8 @@ const Header = () => {
           <Link to="/"><img className="w-12 md:h-14 md:w-14 rounded-2xl object-cover" src="/logo.jpg" alt="logo"/></Link>
         </div>
 
-        <ul className="hidden md:flex gap-6 lg:gap-8 list-none">
+        <ul className="hidden md:flex flex-wrap gap-4 lg:gap-8 list-none">
+          <Link to='/' className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">Home</Link>
           <Link to='/whyspendsense' className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer" >Why Spend-Sense</Link>
           <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">
             What You Get
@@ -51,6 +52,7 @@ const Header = () => {
           </div>
 
           <ul className="flex flex-col gap-6 text-center mt-6">
+            <Link to='/' className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Home</Link>
             <Link to='/whyspendsense' className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Why Spend-Sense</Link>
             <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">What You Get</li>
             <Link to="/contact"><li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Contact Us</li></Link>
