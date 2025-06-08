@@ -14,7 +14,7 @@ useEffect(() => {
   const fetchUserData = async () => {
     try {
    
-      const response = await axios.get(`http://localhost:3000/api/v1/users`);
+      const response = await axios.get(`http://localhost:5000/api/v1/users`);
 
       const users = response.data;
       const userId = "684400a3cf95bf2b97b32b20";

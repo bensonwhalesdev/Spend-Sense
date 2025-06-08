@@ -21,7 +21,7 @@ const SignUp = () => {
   async function  submitHandler(e){
     e.preventDefault();
    try {
-    const response = await axios.post("http://localhost:3000/api/v1/users", formData)
+    const response = await axios.post("http://localhost:5000/api/v1/users", formData)
     console.log(response.data)
     setFormData({firstname: "", lastname: "", password: "", role: "user"})
      navigate("/dashboard");
