@@ -1,7 +1,7 @@
 import { Zap } from "lucide-react";
 
-const SummaryPanel = ({ totalAvailableBalance = 0, totalAssigned = 0 }) => {
-  const available = totalAvailableBalance - totalAssigned;
+const SummaryPanel = ({ currentBalance = 0, totalAssigned = 0 }) => {
+  const available = currentBalance;
 
   return (
     <aside className="p-4 bg-gray-50 flex flex-col gap-6">
