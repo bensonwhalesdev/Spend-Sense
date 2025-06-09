@@ -1,34 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Home, Zap, Music, ShoppingCart, Heart, PlusCircle } from "lucide-react";
 
-const BudgetTable = ({ availableBalance = 0, onAssignedChange }) => {
-  const initialCategories = [
-    {
-      group: "Bills",
-      items: [
-        { name: "Rent", amount: null, icon: <Home size={16} className="text-green-500" /> },
-        { name: "Utilities", amount: null, icon: <Zap size={16} className="text-blue-500" /> },
-        { name: "Insurance", amount: null },
-        { name: "Music", amount: null, icon: <Music size={16} className="text-blue-500" /> },
-      ],
-    },
-    {
-      group: "Needs",
-      items: [
-        { name: "Groceries", amount: null, icon: <ShoppingCart size={16} className="text-green-500" /> },
-      ],
-    },
-    {
-      group: "Wants",
-      items: [
-        { name: "Charity", amount: null, icon: <Heart size={16} className="text-red-500" /> },
-        { name: "Shopping", amount: null },
-      ],
-    },
-  ];
+const defaultCategories = [
+  {
+    group: "Bills",
+    items: [
+      { name: "Rent", amount: null, icon: <Home size={16} className="text-green-500" /> },
+      { name: "Utilities", amount: null, icon: <Zap size={16} className="text-blue-500" /> },
+      { name: "Insurance", amount: null },
+      { name: "Music", amount: null, icon: <Music size={16} className="text-blue-500" /> },
+    ],
+  },
+  {
+    group: "Needs",
+    items: [
+      { name: "Groceries", amount: null, icon: <ShoppingCart size={16} className="text-green-500" /> },
+    ],
+  },
+  {
+    group: "Wants",
+    items: [
+      { name: "Charity", amount: null, icon: <Heart size={16} className="text-red-500" /> },
+      { name: "Shopping", amount: null },
+    ],
+  },
+];
 
-  const [categories, setCategories] = useState(initialCategories);
+const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories }) => {
+  const [categories, setCategories] = useState(initialCategories?.length ? initialCategories : defaultCategories);
   const [totalAssigned, setTotalAssigned] = useState(0);
+
+  useEffect(() => {
+    if (initialCategories?.length) {
+      setCategories(initialCategories);
+    }
+  }, [initialCategories]);
 
   const handleAmountChange = (groupIndex, itemIndex, value) => {
     const parsed = parseFloat(value);
@@ -55,7 +61,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange }) => {
       .reduce((sum, item) => sum + (item.amount || 0), 0);
 
     setTotalAssigned(total);
-    if (onAssignedChange) onAssignedChange(total);
+    if (onAssignedChange) onAssignedChange(total, categories);
   }, [categories, onAssignedChange]);
 
   return (

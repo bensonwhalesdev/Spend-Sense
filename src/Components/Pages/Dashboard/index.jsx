@@ -4,6 +4,7 @@ import HeaderBar from "./HeaderBar";
 import BudgetTable from "./BudgetTable";
 import SummaryPanel from "./SummaryPanel";
 import axios from "axios";
+import Button from "../../LandingPage/Button";
 
 const userId = "684400a3cf95bf2b97b32b20"; // Replace with actual dynamic user ID if needed
 
@@ -25,6 +26,40 @@ const Dashboard = () => {
 
     fetchAccounts();
   }, []);
+
+  const saveBudget = async () => {
+  try {
+    const plainCategories = budgetCategories.map(group => ({
+      group: group.group,
+      items: group.items.map(item => ({
+        name: item.name,
+        amount: item.amount
+      }))
+    }));
+
+    await axios.post(`http://localhost:5000/api/v1/budgets/${userId}`, {
+      categories: plainCategories,
+    });
+    alert('Budget saved!');
+  } catch (err) {
+    console.error(err);
+    alert('Failed to save budget');
+  }
+};
+
+useEffect(() => {
+    const fetchBudget = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/v1/budgets/${userId}`);
+        setBudgetCategories(res.data.categories);
+      } catch (err) {
+        console.error("Error fetching budget:", err);
+      }
+    };
+
+    fetchBudget();
+  }, []);
+
 
   // Compute current balance
   const totalAvailableBalance = accounts.reduce((acc, a) => acc + a.balance, 0);
@@ -60,8 +95,15 @@ const Dashboard = () => {
               <BudgetTable
                 budgetCategories={budgetCategories}
                 setBudgetCategories={setBudgetCategories}
-                onAssignedChange={handleAssignedChange}
+                onAssignedChange={(total, updatedCategories) => {
+                          setTotalAssigned(total);
+                         setBudgetCategories(updatedCategories); // ✅ update state!
+                              }}
+                initialCategories={budgetCategories}
               />
+              <div>
+              <Button text={'Save Budget'}  classStyle={'border bg-green-500 text-white font-semibold px-4 py-2 rounded-md mt-4'} onClick={saveBudget}/>
+            </div>
             </div>
             <div className="w-full lg:w-1/3">
               <SummaryPanel
