@@ -10,12 +10,14 @@ import {
 } from "lucide-react";
 import Button from "../../../LandingPage/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   const [collapsed, setCollapsed] = useState(true);
   const [showAccounts, setShowAccounts] = useState(true);
   const [userData, setUserData] = useState(null);
-  const userId = "684400a3cf95bf2b97b32b20";
+  const router = useNavigate();
+  const userId = "6847f608255558fe75cdaf24";
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -81,7 +83,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   };
 
   const handleLogout = () => {
-    window.location.href = "/";
+    router("/");
   };
 
   return (
@@ -115,56 +117,28 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
 
       {!collapsed && (
         <div>
-          <div
-            onClick={() => setShowAccounts(!showAccounts)}
-            className="flex items-center justify-between cursor-pointer mb-2 text-sm text-gray-300"
-          >
-            <span>CASH</span>
-            <ChevronDown
-              className={`w-4 h-4 transform transition-transform duration-200 ${
-                showAccounts ? "rotate-0" : "-rotate-90"
-              }`}
-            />
+          <div onClick={() => setShowAccounts(!showAccounts)} className="flex items-center justify-between cursor-pointer mb-2 text-sm text-gray-300"><span>CASH</span>
+            <ChevronDown className={`w-4 h-4 transform transition-transform duration-200 ${showAccounts ? "rotate-0" : "-rotate-90"}`} />
           </div>
 
           {showAccounts && (
             <ul className="pl-4 text-sm space-y-2 max-h-72 overflow-auto">
               {accounts.map(({ _id, name, balance }) => (
-                <li
-                  key={_id}
-                  className="flex justify-between items-center bg-[#1A1C5A] px-2 py-1 rounded"
-                >
+                <li key={_id} className="flex justify-between items-center bg-[#1A1C5A] px-2 py-1 rounded">
                   <div className="flex flex-col flex-1">
                     <span className="block font-medium">{name}</span>
-                    <input
-                      type="text"
-                      value={balance}
-                      min="0"
-                      onChange={(e) => handleBalanceChange(_id, e.target.value)}
-                      className="bg-transparent border border-gray-600 rounded p-1 text-white focus:outline-none focus:ring-2 focus:ring-white w-full"
-                    />
+                    <input type="text" value={balance} min="0" onChange={(e) => handleBalanceChange(_id, e.target.value)} className="bg-transparent border border-gray-600 rounded p-1 text-white focus:outline-none focus:ring-2 focus:ring-white w-full" />
                   </div>
-                  <Trash2
-                    onClick={() => handleDeleteAccount(_id)}
-                    className="w-4 h-4 text-red-400 hover:text-red-600 cursor-pointer ml-3"
-                  />
+                  <Trash2 onClick={() => handleDeleteAccount(_id)} className="w-4 h-4 text-red-400 hover:text-red-600 cursor-pointer ml-3" />
                 </li>
               ))}
             </ul>
           )}
 
-          <button
-            onClick={handleAddAccount}
-            className="mt-3 flex items-center gap-2 text-sm bg-[#2E3092] hover:bg-[#3b3db0] px-3 py-2 rounded transition"
-          >
-            <PlusCircle className="w-4 h-4" /> Add Account
+          <button onClick={handleAddAccount} className="mt-3 flex items-center gap-2 text-sm bg-[#2E3092] hover:bg-[#3b3db0] px-3 py-2 rounded transition"><PlusCircle className="w-4 h-4" /> Add Account
           </button>
 
-          <Button
-            text={"LogOut"}
-            classStyle="px-5 py-2 rounded-[5px] mt-5 bg-green-400 text-[#fff] font-semibold hover:bg-green-600 transition-colors"
-            onClick={handleLogout}
-          />
+          <Button text={"LogOut"} classStyle="px-5 py-2 rounded-[5px] mt-5 bg-green-400 text-[#fff] font-semibold hover:bg-green-600 transition-colors" onClick={handleLogout} />
         </div>
       )}
     </div>

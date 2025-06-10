@@ -16,7 +16,7 @@ const Solution = () => {
       <li>Build real savings you can count on</li>
     </ul>
   </div>
-  <img src="/paycheck.jpg" alt="Planning graphic" className="w-full max-w-[200px] rounded-lg shadow-lg" />
+  <img src="/paycheck.avif" alt="Planning graphic" className="w-full max-w-[400px] rounded-lg shadow-lg" />
 </section>
 
   )

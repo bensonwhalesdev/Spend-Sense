@@ -18,7 +18,7 @@ const HeroSection = () => {
         </div>
         <div className="mt-10 lg:mt-0 animate__animated animate__fadeInRight">
           {/* <SignUp /> */}
-          <img className="size-130 rounded-[10px]" src="/heroImg.jpg" alt="" />
+          <img className="size-130 rounded-[10px]" src="/budget.avif" alt="" />
         </div>
       </div>
     </div>
