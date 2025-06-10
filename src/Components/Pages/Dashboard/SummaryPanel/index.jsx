@@ -1,10 +1,11 @@
 import { Zap } from "lucide-react";
+import 'animate.css'
 
 const SummaryPanel = ({ currentBalance = 0, totalAssigned = 0 }) => {
   const available = currentBalance;
 
   return (
-    <aside className="p-4 bg-gray-50 flex flex-col gap-6">
+    <div className="p-4 bg-gray-50 flex flex-col gap-6 animate__animated animate__fadeInUp">
       <div>
         <h2 className="font-semibold text-gray-700">June's Summary</h2>
         <div className="text-sm mt-2">
@@ -48,7 +49,7 @@ const SummaryPanel = ({ currentBalance = 0, totalAssigned = 0 }) => {
           <span>₦0.00</span>
         </div>
       </div>
-    </aside>
+    </div>
   );
 };
 

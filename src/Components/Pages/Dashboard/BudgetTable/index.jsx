@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Home, Zap, Music, ShoppingCart, Heart, PlusCircle } from "lucide-react";
+import 'animate.css'
 
 const defaultCategories = [
   {
@@ -65,7 +66,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
   }, [categories, onAssignedChange]);
 
   return (
-    <div>
+    <div className="animate__animated animate__fadeInUp">
       <table className="w-full text-left">
         <thead>
           <tr className="text-gray-500 text-sm">
