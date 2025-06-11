@@ -1,7 +1,6 @@
 import React from "react";
 import { Facebook, Instagram, Mail, TwitterIcon } from "lucide-react";
 import { Link } from "react-router-dom";
-import SecondSection from "../SecondSection";
 
 const Footer = () => {
   return (
@@ -18,9 +17,9 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-gray-300">
-            <li><a href="#" className="hover:text-white">Why Spend-Sense</a></li>
-            <li><a href="#" className="hover:text-white">How It Works</a></li>
-            <li><a href="#" className="hover:text-white">FAQs</a></li>
+            <li><Link to="/whyspendsense" className="hover:text-white">Why Spend-Sense</Link></li>
+            <li><Link to="#" className="hover:text-white">How It Works</Link></li>
+            <li><Link to="#" className="hover:text-white">FAQs</Link></li>
             <Link to="/contact" className="hover:text-white">Contact</Link>
           </ul>
         </div>
@@ -29,18 +28,18 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Connect with Us</h3>
           <div className="flex space-x-4 text-gray-300">
-            <a href="#" aria-label="Facebook" className="hover:text-white">
+            <Link to="#" aria-label="Facebook" className="hover:text-white">
               <Facebook />
-            </a>
-            <a href="#" aria-label="Twitter" className="hover:text-white">
+            </Link>
+            <Link to="#" aria-label="Twitter" className="hover:text-white">
               <TwitterIcon />
-            </a>
-            <a href="#" aria-label="Instagram" className="hover:text-white">
+            </Link>
+            <Link to="#" aria-label="Instagram" className="hover:text-white">
               <Instagram />
-            </a>
-            <a href="mailto:support@spendsense.ng" aria-label="Email" className="hover:text-white">
+            </Link>
+            <Link to="mailto:support@spendsense.ng" aria-label="Email" className="hover:text-white">
               <Mail />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

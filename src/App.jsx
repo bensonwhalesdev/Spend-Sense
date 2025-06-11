@@ -6,6 +6,7 @@ import Dashboard from "./Components/Pages/Dashboard";
 import Register from "./Components/Pages/(AuthPages)/Resgister";
 import Login from "./Components/Pages/(AuthPages)/Login";
 import WhySpendSense from "./Components/Pages/WhySpendSensePage";
+import FAQSection from "./Components/LandingPage/Accordion";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} /> 
         <Route path="/auth/signup" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
-        <Route path="whyspendsense" element={<WhySpendSense />} />
+        <Route path="/whyspendsense" element={<WhySpendSense />} />
       </Routes>
     </Router>
   );
