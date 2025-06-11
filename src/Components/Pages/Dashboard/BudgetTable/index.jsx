@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Home, Zap, Music, ShoppingCart, Heart, PlusCircle } from "lucide-react";
-import 'animate.css'
+import 'animate.css';
 
 const defaultCategories = [
   {
@@ -27,20 +27,28 @@ const defaultCategories = [
   },
 ];
 
-const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories }) => {
-  const [categories, setCategories] = useState(initialCategories?.length ? initialCategories : defaultCategories);
+const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories = [] }) => {
+  const [categories, setCategories] = useState(initialCategories.length ? initialCategories : defaultCategories);
   const [totalAssigned, setTotalAssigned] = useState(0);
 
   useEffect(() => {
-    if (initialCategories?.length) {
+    if (initialCategories.length) {
       setCategories(initialCategories);
     }
-  }, [initialCategories]);
+  }, [JSON.stringify(initialCategories)]); // prevents unnecessary rerenders
+
+  useEffect(() => {
+    const total = categories
+      .flatMap(group => group.items)
+      .reduce((sum, item) => sum + (item.amount || 0), 0);
+
+    setTotalAssigned(total);
+    onAssignedChange?.(total, categories);
+  }, [categories]);
 
   const handleAmountChange = (groupIndex, itemIndex, value) => {
-    const parsed = parseFloat(value);
     const updated = [...categories];
-    updated[groupIndex].items[itemIndex].amount = isNaN(parsed) ? null : parsed;
+    updated[groupIndex].items[itemIndex].amount = isNaN(parseFloat(value)) ? null : parseFloat(value);
     setCategories(updated);
   };
 
@@ -55,15 +63,6 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
     updated[groupIndex].items.push({ name: "", amount: null });
     setCategories(updated);
   };
-
-  useEffect(() => {
-    const total = categories
-      .flatMap((cat) => cat.items)
-      .reduce((sum, item) => sum + (item.amount || 0), 0);
-
-    setTotalAssigned(total);
-    if (onAssignedChange) onAssignedChange(total, categories);
-  }, [categories, onAssignedChange]);
 
   return (
     <div className="animate__animated animate__fadeInUp">
@@ -98,7 +97,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
                     <input
                       type="number"
                       min={0}
-                      value={item.amount === null ? "" : item.amount}
+                      value={item.amount ?? ""}
                       onChange={(e) => handleAmountChange(groupIndex, itemIndex, e.target.value)}
                       placeholder="0.00"
                       className="w-24 p-1 border border-gray-300 rounded text-sm"
@@ -106,11 +105,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
                   </td>
                   <td className="p-2">₦0.00</td>
                   <td className="p-2">
-                    <span
-                      className={`px-2 py-1 rounded text-white ${
-                        item.amount ? "bg-green-500" : "bg-gray-300"
-                      }`}
-                    >
+                    <span className={`px-2 py-1 rounded text-white ${item.amount ? "bg-green-500" : "bg-gray-300"}`}>
                       ₦{item.amount ? item.amount.toFixed(2) : "0.00"}
                     </span>
                   </td>
@@ -130,9 +125,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
           ))}
           <tr className="bg-blue-100 font-semibold text-sm">
             <td colSpan="3" className="p-2 text-right">Total Assigned:</td>
-            <td className="p-2 bg-green-300 text-black">
-              ₦{totalAssigned.toFixed(2)}
-            </td>
+            <td className="p-2 bg-green-300 text-black">₦{totalAssigned.toFixed(2)}</td>
           </tr>
         </tbody>
       </table>
