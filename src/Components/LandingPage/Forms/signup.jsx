@@ -59,19 +59,8 @@ const SignUp = () => {
         {/* Password */}
         <div className="relative ml-[-15px] w-full">
           <label htmlFor="password" className="absolute left-0 top-[-22px] cursor-text bg-[#1C1F58] px-1 pb-0 pt-2.5 text-sm text-white">Password</label>
-          <input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className="w-full rounded-md border border-solid border-black bg-white px-2.5 py-[15px] pr-10 text-black placeholder:text-black outline-none focus:border-black"
-          />
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600"
-          >
+          <input id="password" type={showPassword ? "text" : "password"} placeholder="Password" value={formData.password} onChange={handleChange} required className="w-full rounded-md border border-solid border-black bg-white px-2.5 py-[15px] pr-10 text-black placeholder:text-black outline-none focus:border-black"/>
+          <span onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600">
             {showPassword ? <EyeOff className="text-red-500" size={20} /> : <Eye size={20} />}
           </span>
         </div>
@@ -79,17 +68,8 @@ const SignUp = () => {
         {/* Confirm Password */}
         <div className="relative ml-[-15px] w-full">
           <label htmlFor="confirm-password" className="absolute left-0 top-[-22px] cursor-text bg-[#1C1F58] px-1 pb-0 pt-2.5 text-sm text-white">Confirm Password</label>
-          <input
-            id="confirm-password"
-            type={showConfirmPassword ? "text" : "password"}
-            placeholder="Confirm Password"
-            required
-            className="w-full rounded-md border border-solid border-black bg-white px-2.5 py-[15px] pr-10 text-black placeholder:text-black outline-none focus:border-black"
-          />
-          <span
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600"
-          >
+          <input id="confirm-password" type={showConfirmPassword ? "text" : "password"} placeholder="Confirm Password" required className="w-full rounded-md border border-solid border-black bg-white px-2.5 py-[15px] pr-10 text-black placeholder:text-black outline-none focus:border-black"/>
+          <span onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600">
             {showConfirmPassword ? <EyeOff className="text-red-500" size={20} /> : <Eye size={20} />}
           </span>
         </div>

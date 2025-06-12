@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Button from "../../../LandingPage/Button";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import 'animate.css'
 
 const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
@@ -18,7 +18,9 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   const [showAccounts, setShowAccounts] = useState(true);
   const [userData, setUserData] = useState(null);
   const router = useNavigate();
-  const userId = "6847f608255558fe75cdaf24";
+  const location = useLocation();
+  const user = location.state?.user;
+  const userId = user?._id
 
   useEffect(() => {
     const fetchUserData = async () => {

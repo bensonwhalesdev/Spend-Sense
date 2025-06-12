@@ -5,13 +5,15 @@ import BudgetTable from "./BudgetTable";
 import SummaryPanel from "./SummaryPanel";
 import axios from "axios";
 import Button from "../../LandingPage/Button";
-
-const userId = "6847f608255558fe75cdaf24";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
   const [budgetCategories, setBudgetCategories] = useState([]);
   const [totalAssigned, setTotalAssigned] = useState(0);
+  const location = useLocation();
+  const user = location.state?.user;
+  const userId = user?._id
 
   // Fetch accounts
   useEffect(() => {
