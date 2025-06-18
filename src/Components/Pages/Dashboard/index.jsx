@@ -11,9 +11,8 @@ const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
   const [budgetCategories, setBudgetCategories] = useState([]);
   const [totalAssigned, setTotalAssigned] = useState(0);
-  const location = useLocation();
-  const user = location.state?.user;
-  const userId = user?._id
+ const storedUser = JSON.parse(localStorage.getItem("user"));
+const userId = storedUser?._id;
 
   // Fetch accounts
   useEffect(() => {

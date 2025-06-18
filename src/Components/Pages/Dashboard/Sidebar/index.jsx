@@ -18,9 +18,8 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   const [showAccounts, setShowAccounts] = useState(true);
   const [userData, setUserData] = useState(null);
   const router = useNavigate();
-  const location = useLocation();
-  const user = location.state?.user;
-  const userId = user?._id
+ const storedUser = JSON.parse(localStorage.getItem("user"));
+const userId = storedUser?._id;
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -86,6 +85,8 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
+   localStorage.removeItem("user");
     router("/");
   };
 

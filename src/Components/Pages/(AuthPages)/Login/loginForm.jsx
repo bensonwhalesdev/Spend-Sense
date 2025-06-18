@@ -22,11 +22,14 @@ const LoginForm = () => {
   async function submitHandler(e) {
     e.preventDefault();
     try {
-      // const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
       const response = await apiClient.post("/users/login", formData)
-      const user = response.data;
+      const { token, user } = response.data;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
       console.log("User logged in:", user);
-      navigate("/dashboard", { state: { user } }); 
+      navigate("/dashboard", { state: { user } });
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);
       setError("Invalid email or password.");

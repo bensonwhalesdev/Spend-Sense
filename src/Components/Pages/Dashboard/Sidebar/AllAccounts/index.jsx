@@ -5,8 +5,8 @@ import { ChevronLeft } from "lucide-react";
 import { apiClient } from "../../../../../lib/client";
 
 const AccountsOverview = () => {
-  const userId = "684400a3cf95bf2b97b32b20";
-  console.log(userId);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const userId = storedUser?._id;
   const [accounts, setAccounts] = useState([]);
   const [totalAssigned, setTotalAssigned] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
