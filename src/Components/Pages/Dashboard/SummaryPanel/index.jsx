@@ -1,17 +1,8 @@
 import 'animate.css'
-import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Zap } from 'lucide-react';
 
 const SummaryPanel = ({ currentBalance = 0, totalAssigned = 0 }) => {
   const available = currentBalance;
-  const data = [
-    { name: "Jan", spent: 50000, saved: 38500 },
-    { name: "Feb", spent: 65000, saved: 19400 },
-    { name: "Mar", spent: 28800, saved: 15000 },
-    { name: "Apr", spent: 45890, saved: 10278 },
-    { name: "May", spent: 69750, saved: 54350 },
-    { name: "Jun", spent: 42700, saved: 38539 },
-  ];
 
 
   return (
@@ -51,18 +42,6 @@ const SummaryPanel = ({ currentBalance = 0, totalAssigned = 0 }) => {
           <span>₦0.00</span>
         </div>
       </div>
-     <div className="w-full max-w-5xl mx-auto">
-             <ResponsiveContainer width="100%" height={400}>
-               <BarChart data={data}>
-                 <XAxis dataKey="name" />
-                 <YAxis tickFormatter={(value) => `₦${value}`} />
-                 <Tooltip formatter={(value) => `₦${value.toLocaleString()}`} labelStyle={{ fontWeight: "bold" }} />
-                 <Legend />
-                 <Bar dataKey="spent" fill="#EF4444" name="Amount Spent" />
-                 <Bar dataKey="saved" fill="#10B981" name="Amount Saved" />
-               </BarChart>
-             </ResponsiveContainer>
-          </div>
     </div>
   );
 };

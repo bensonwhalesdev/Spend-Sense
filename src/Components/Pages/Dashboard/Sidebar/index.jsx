@@ -9,9 +9,9 @@ import {
   Menu,
 } from "lucide-react";
 import Button from "../../../LandingPage/Button";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import 'animate.css'
+import { apiClient } from "../../../../lib/client";
 
 const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -25,7 +25,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/v1/users");
+        const res = await apiClient.get("/users");
         const user = res.data.find((u) => u._id === userId);
         setUserData(user);
       } catch (err) {
@@ -39,7 +39,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/accounts/${userId}`);
+        const res = await apiClient.get(`/accounts/${userId}`);
         setAccounts(res.data);
       } catch (err) {
         console.error("Error fetching accounts:", err);
@@ -56,7 +56,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
         name: `Account ${accounts.length + 1}`,
         balance: 0,
       };
-      const res = await axios.post("http://localhost:5000/api/v1/accounts", newAccount);
+      const res = await apiClient.post("/accounts", newAccount);
       setAccounts((prev) => [...prev, res.data]);
     } catch (err) {
       console.error("Error adding account:", err);
@@ -68,9 +68,9 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
     updateAccountBalance(id, newBalance);
 
     try {
-      await axios.patch(`http://localhost:5000/api/v1/accounts/${id}`, {
+      await apiClient.patch(`/accounts/${id}`, {
         balance: newBalance,
-      });
+      })
     } catch (err) {
       console.error("Error updating balance:", err);
     }
@@ -78,7 +78,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
 
   const handleDeleteAccount = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/v1/accounts/${id}`);
+      await apiClient.delete(`/accounts/${id}`);
       setAccounts((prev) => prev.filter((acc) => acc._id !== id));
     } catch (err) {
       console.error("Error deleting account:", err);
@@ -108,12 +108,19 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
         <button className="flex items-center gap-3 p-2 rounded bg-[#2E3092]">
           <Home className="w-5 h-5" /> {!collapsed && <span>Plan</span>}
         </button>
-        <button className="flex items-center gap-3 p-2 hover:bg-[#2E3092] rounded">
+        <div className="hover:bg-[#2E3092]">
+          <Link to='/reflect'>
+        <button className="flex items-center gap-3 p-2 rounded">
           <PieChart className="w-5 h-5" /> {!collapsed && <span>Reflect</span>}
         </button>
-        <button className="flex items-center gap-3 p-2 hover:bg-[#2E3092] rounded">
+        </Link>
+        </div>
+        <div>
+          <Link to='/allaccounts'><button className="flex items-center gap-3 p-2 hover:bg-[#2E3092] rounded">
           <Wallet className="w-5 h-5" /> {!collapsed && <span>All Accounts</span>}
-        </button>
+        </button></Link>
+        </div>
+        
       </nav>
 
       {!collapsed && (

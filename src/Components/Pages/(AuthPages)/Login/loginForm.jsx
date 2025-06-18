@@ -3,6 +3,7 @@ import Button from "../../../LandingPage/Button";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { apiClient } from "../../../../lib/client";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const LoginForm = () => {
   async function submitHandler(e) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
+      // const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
+      const response = await apiClient.post("/users/login", formData)
       const user = response.data;
       console.log("User logged in:", user);
       navigate("/dashboard", { state: { user } }); 

@@ -25,6 +25,13 @@ const defaultCategories = [
       { name: "Shopping", amount: null },
     ],
   },
+  {
+    group: "Savings",
+    items: [
+      { name: "Emergency Fund", amount: null },
+      { name: "Retirement", amount: null },
+    ],
+  }
 ];
 
 const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories = [] }) => {
@@ -35,7 +42,7 @@ const BudgetTable = ({ availableBalance = 0, onAssignedChange, initialCategories
     if (initialCategories.length) {
       setCategories(initialCategories);
     }
-  }, [JSON.stringify(initialCategories)]); // prevents unnecessary rerenders
+  }, [JSON.stringify(initialCategories)]);
 
   useEffect(() => {
     const total = categories

@@ -4,12 +4,14 @@ import "./signup.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { apiClient } from "../../../lib/client";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
+    email: "",
     password: "",
     role: "user"
   });
@@ -24,9 +26,10 @@ const SignUp = () => {
   async function submitHandler(e) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/users", formData);
+      const response = await apiClient.post("/users", formData)
+      localStorage.setItem("user", JSON.stringify(response.data));
       console.log(response.data);
-      setFormData({ firstname: "", lastname: "", password: "", role: "user" });
+      setFormData({ firstname: "", lastname: "", email: "", password: "", role: "user" });
       navigate("/dashboard");
     } catch (error) {
       console.log(error.message);

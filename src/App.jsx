@@ -7,6 +7,8 @@ import Register from "./Components/Pages/(AuthPages)/Resgister";
 import Login from "./Components/Pages/(AuthPages)/Login";
 import WhySpendSense from "./Components/Pages/WhySpendSensePage";
 import FAQSection from "./Components/LandingPage/Accordion";
+import Reflect from "./Components/Pages/Dashboard/Sidebar/ReflectPage";
+import AccountsOverview from "./Components/Pages/Dashboard/Sidebar/AllAccounts";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/auth/signup" element={<Register />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/whyspendsense" element={<WhySpendSense />} />
+        <Route path="/reflect" element={<Reflect />} />
+        <Route path="/allaccounts" element={<AccountsOverview />} />
       </Routes>
     </Router>
   );

@@ -3,9 +3,9 @@ import Sidebar from "./Sidebar";
 import HeaderBar from "./HeaderBar";
 import BudgetTable from "./BudgetTable";
 import SummaryPanel from "./SummaryPanel";
-import axios from "axios";
 import Button from "../../LandingPage/Button";
 import { useLocation } from "react-router-dom";
+import { apiClient } from "../../../lib/client";
 
 const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/accounts/${userId}`);
+        const res = await apiClient.get(`/accounts/${userId}`)
         setAccounts(res.data);
       } catch (err) {
         console.error("Failed to fetch accounts:", err);
@@ -32,7 +32,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchBudget = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/budgets/${userId}`);
+        const res = await apiClient.get(`/budgets/${userId}`)
         if (res.data.length > 0) {
           setBudgetCategories(res.data[0].categories || []);
         }
@@ -53,9 +53,9 @@ const Dashboard = () => {
         }))
       }));
 
-      await axios.post(`http://localhost:5000/api/v1/budgets/${userId}`, {
+      await apiClient.post(`/budgets/${userId}`, {
         categories: formatted,
-      });
+      })
 
       alert("Budget saved!");
     } catch (err) {
