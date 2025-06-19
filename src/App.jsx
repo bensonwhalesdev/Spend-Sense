@@ -9,6 +9,7 @@ import WhySpendSense from "./Components/Pages/WhySpendSensePage";
 import FAQSection from "./Components/LandingPage/Accordion";
 import Reflect from "./Components/Pages/Dashboard/Sidebar/ReflectPage";
 import AccountsOverview from "./Components/Pages/Dashboard/Sidebar/AllAccounts";
+import ViewUserProfile from "./Components/Pages/Dashboard/Sidebar/ViewUserProfile";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/whyspendsense" element={<WhySpendSense />} />
         <Route path="/reflect" element={<Reflect />} />
         <Route path="/allaccounts" element={<AccountsOverview />} />
+        <Route path="/viewprofile" element={<ViewUserProfile />} />
       </Routes>
     </Router>
   );
