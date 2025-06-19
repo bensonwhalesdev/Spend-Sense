@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { apiClient } from "../../../../../lib/client";
 
@@ -10,6 +10,14 @@ const AccountsOverview = () => {
   const [accounts, setAccounts] = useState([]);
   const [totalAssigned, setTotalAssigned] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/");
+      }
+    }, []);
 
   useEffect(() => {
     if (!userId) return;

@@ -20,6 +20,14 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
   const router = useNavigate();
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = storedUser?._id;
+  const navigate = useNavigate();
+  
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/");
+        }
+      }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,7 +41,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
     };
 
     fetchUserData();
-  }, []);
+  }, [setUserData, userId]);
 
   useEffect(() => {
     const fetchAccounts = async () => {
@@ -125,7 +133,7 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
             </button>
           </Link>
         </div>
-        <div>
+        <div className="hover:bg-[#2E3092]">
           <Link to="/allaccounts">
             <button className="flex items-center gap-3 p-2 hover:bg-[#2E3092] rounded">
               <Wallet className="w-5 h-5" />{" "}

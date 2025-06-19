@@ -5,14 +5,23 @@ import { apiClient } from "../../../../../lib/client";
 
 const ViewUserProfile = () => {
   const [user, setUser] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/");
+      }
+    }, []);
+    
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
   }, []);
 
   const handleDelete = async () => {
+    setisLoading(true);
     const confirmDelete = window.confirm("Are you sure you want to delete your account? This action is irreversible.");
     if (!confirmDelete || !user?._id) return;
 
@@ -24,7 +33,10 @@ const ViewUserProfile = () => {
     } catch (err) {
       console.error("Error deleting account:", err);
       alert("Something went wrong while deleting your profile.");
+    } finally {
+      setisLoading(false);
     }
+
   };
 
   const handleBack = () => {
@@ -66,10 +78,11 @@ const ViewUserProfile = () => {
         {/* Delete Button */}
         <div className="mt-12">
           <button
+          isLoading={isLoading}
             onClick={handleDelete}
             className="w-full bg-red-500 hover:bg-red-700 transition-colors duration-300 py-3 px-6 text-white font-semibold rounded-lg shadow-md cursor-pointer"
           >
-            Delete My Account
+            {isLoading ? "Deleting..." : "Delete My Account"}
           </button>
         </div>
       </div>

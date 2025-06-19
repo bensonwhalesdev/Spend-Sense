@@ -23,9 +23,9 @@ const Header = () => {
         <ul className="hidden md:flex flex-wrap gap-4 lg:gap-8 list-none">
           <Link to='/' className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">Home</Link>
           <Link to='/whyspendsense' className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer" >Why Spend-Sense</Link>
-          <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">
+          {/* <li className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer">
             What You Get
-          </li>
+          </li> */}
           <Link to="/contact" className="font-semibold text-white hover:text-blue-300 transition-colors cursor-pointer" >Contact Us</Link>
         </ul>
 

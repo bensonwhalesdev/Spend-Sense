@@ -7,6 +7,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { apiClient } from "../../../lib/client";
 
 const SignUp = () => {
+  const [isLoading, setisLoading] = useState(false)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
@@ -24,17 +25,33 @@ const SignUp = () => {
   };
 
   async function submitHandler(e) {
-    e.preventDefault();
-    try {
-      const response = await apiClient.post("/users", formData)
-      localStorage.setItem("user", JSON.stringify(response.data));
-      console.log(response.data);
-      setFormData({ firstname: "", lastname: "", email: "", password: "", role: "user" });
-      navigate("/dashboard");
-    } catch (error) {
-      console.log(error.message);
-    }
+  e.preventDefault();
+  setisLoading(true);
+
+  try {
+    const response = await apiClient.post("/users", formData);
+    const { user, token } = response.data;
+
+    // Store token and user
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    setFormData({
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      role: "user"
+    });
+
+    navigate("/dashboard");
+  } catch (error) {
+    console.log("Signup error:", error.message);
+  } finally {
+    setisLoading(false);
   }
+}
+
 
   return (
     <div className="w-[500px] rounded-[10px] bg-[#1C1F58] px-5 py-4 text-black shadow-[#1C1F58] shadow-lg hover:shadow-2xl float-animation">
@@ -77,7 +94,7 @@ const SignUp = () => {
           </span>
         </div>
 
-        <Button type="submit" text={"Submit"} classStyle={"px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors"} />
+        <Button isLoading={isLoading} type="submit" text={isLoading ? "Signing up..." : "Sign Up"} classStyle={"px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors"} />
       </form>
     </div>
   );

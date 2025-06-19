@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { apiClient } from "../../../../lib/client";
 
 const LoginForm = () => {
+  const [isLoading, setisLoading] = useState(false)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -21,6 +22,7 @@ const LoginForm = () => {
 
   async function submitHandler(e) {
     e.preventDefault();
+    setisLoading(true);
     try {
       const response = await apiClient.post("/users/login", formData)
       const { token, user } = response.data;
@@ -33,6 +35,8 @@ const LoginForm = () => {
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);
       setError("Invalid email or password.");
+    } finally {
+      setisLoading(false);
     }
   }
 
@@ -57,7 +61,7 @@ const LoginForm = () => {
 
         {error && <p className="text-red-500 text-sm mt-2 bg-white rounded-[10px] px-5 py-2">{error}</p>}
 
-        <Button type="submit" text={"Login"} classStyle={"px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors"} />
+        <Button isLoading={isLoading} type="submit" text={isLoading ? "Loading..." : "Login"} classStyle={"px-5 py-2 rounded-[10px] bg-green-400 text-white font-semibold hover:bg-green-600 transition-colors"} />
       </form>
     </div>
   );

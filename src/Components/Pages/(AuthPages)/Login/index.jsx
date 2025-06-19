@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginForm from './loginForm'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate();
 
-  
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        navigate("/dashboard");
+      }
+    }, []);
   return (
     <div className="min-h-screen bg-[#4b33d1] flex items-center justify-center px-4 py-10">
           <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-10">

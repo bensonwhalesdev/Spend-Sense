@@ -1,7 +1,7 @@
 import { addMonths, format, subMonths } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Bar,
   BarChart,
@@ -14,6 +14,14 @@ import {
 
 const Reflect = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/");
+      }
+    }, []);
 
   const data = [
     { name: "Jan", spent: 50000, saved: 38500 },
