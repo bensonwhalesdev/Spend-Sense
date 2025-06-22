@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { apiClient } from "../../../../../lib/client";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const ViewUserProfile = () => {
   const [user, setUser] = useState(null);
@@ -21,23 +23,38 @@ const ViewUserProfile = () => {
   }, []);
 
   const handleDelete = async () => {
-    setisLoading(true);
-    const confirmDelete = window.confirm("Are you sure you want to delete your account? This action is irreversible.");
-    if (!confirmDelete || !user?._id) return;
+  if (!user?._id) return;
 
-    try {
-      await apiClient.delete(`/users/${user._id}`);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      navigate("/");
-    } catch (err) {
-      console.error("Error deleting account:", err);
-      alert("Something went wrong while deleting your profile.");
-    } finally {
-      setisLoading(false);
-    }
+  const result = await Swal.fire({
+    title: 'Are you sure?',
+    text: 'This action is irreversible!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel',
+  });
 
-  };
+  if (!result.isConfirmed) return;
+
+  setisLoading(true);
+
+  try {
+    await apiClient.delete(`/users/${user._id}`);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    Swal.fire('Deleted!', 'Your account has been deleted.', 'success');
+
+    navigate('/');
+  } catch (err) {
+    console.error('Error deleting account:', err);
+    Swal.fire('Error', 'Something went wrong while deleting your profile.', 'error');
+  } finally {
+    setisLoading(false);
+  }
+};
 
   const handleBack = () => {
     navigate("/dashboard");
@@ -77,13 +94,7 @@ const ViewUserProfile = () => {
 
         {/* Delete Button */}
         <div className="mt-12">
-          <button
-          isLoading={isLoading}
-            onClick={handleDelete}
-            className="w-full bg-red-500 hover:bg-red-700 transition-colors duration-300 py-3 px-6 text-white font-semibold rounded-lg shadow-md cursor-pointer"
-          >
-            {isLoading ? "Deleting..." : "Delete My Account"}
-          </button>
+          <buttonm isLoading={isLoading} onClick={handleDelete} className="w-full bg-red-500 hover:bg-red-700 transition-colors duration-300 py-3 px-6 text-white font-semibold rounded-lg shadow-md cursor-pointer"> {isLoading ? "Deleting..." : "Delete My Account"} </buttonm>
         </div>
       </div>
     </div>

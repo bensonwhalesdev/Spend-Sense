@@ -6,6 +6,7 @@ import SummaryPanel from "./SummaryPanel";
 import Button from "../../LandingPage/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiClient } from "../../../lib/client";
+import { toast } from "sonner";
 
 const Dashboard = () => {
   const [accounts, setAccounts] = useState([]);
@@ -16,12 +17,12 @@ const Dashboard = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const userId = storedUser?._id;
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   // Fetch accounts
   useEffect(() => {
@@ -66,10 +67,10 @@ const Dashboard = () => {
         categories: formatted,
       });
 
-      alert("Budget saved!");
+      toast.success("Budget saved!");
     } catch (err) {
       console.error("Failed to save budget:", err);
-      alert("Failed to save budget.");
+      toast.error("Failed to save budget.");
     } finally {
       setisLoading(false);
     }
@@ -89,38 +90,19 @@ const Dashboard = () => {
   return (
     <div className="relative">
       <div className="flex md:flex-row min-h-screen left-0 w-full z-10">
-        <Sidebar
-          accounts={accounts}
-          setAccounts={setAccounts}
-          updateAccountBalance={updateAccountBalance}
-        />
+        <Sidebar accounts={accounts} setAccounts={setAccounts} updateAccountBalance={updateAccountBalance} />
         <div className="flex-1 bg-gray-50">
-          <HeaderBar
-            availableBalance={currentBalance}
-            totalAssigned={totalAssigned}
-          />
+          <HeaderBar availableBalance={currentBalance} totalAssigned={totalAssigned} />
           <div className="flex flex-col lg:flex-row gap-4 p-4">
             <div className="flex-1">
-              <BudgetTable
-                availableBalance={currentBalance}
-                initialCategories={budgetCategories}
-                onAssignedChange={(total, updated) => {
-                  setTotalAssigned(total);
-                  setBudgetCategories(updated);
-                }}
-              />
-              <Button
-                isLoading={isLoading}
-                text={isLoading ? "Saving..." : "Save Budget"}
+              <BudgetTable availableBalance={currentBalance} initialCategories={budgetCategories}
+                onAssignedChange={(total, updated) => { setTotalAssigned(total); setBudgetCategories(updated); }} />
+              <Button isLoading={isLoading} text={isLoading ? "Saving..." : "Save Budget"}
                 classStyle="border bg-green-500 text-white font-semibold px-4 py-2 rounded-md mt-4"
-                onClick={saveBudget}
-              />
+                onClick={saveBudget} />
             </div>
             <div className="w-full lg:w-1/3">
-              <SummaryPanel
-                currentBalance={currentBalance}
-                totalAssigned={totalAssigned}
-              />
+              <SummaryPanel currentBalance={currentBalance} totalAssigned={totalAssigned} />
             </div>
           </div>
         </div>
