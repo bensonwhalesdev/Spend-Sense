@@ -4,88 +4,19 @@ import HeaderBar from "./HeaderBar";
 import BudgetTable from "./BudgetTable";
 import SummaryPanel from "./SummaryPanel";
 import Button from "../../LandingPage/Button";
-import { useLocation, useNavigate } from "react-router-dom";
-import { apiClient } from "../../../lib/client";
-import { toast } from "sonner";
+import { useFinance } from "./Hook/useFinance";
 
 const Dashboard = () => {
-  const [accounts, setAccounts] = useState([]);
-  const [isLoading, setisLoading] = useState(false)
-  const [budgetCategories, setBudgetCategories] = useState([]);
-  const [totalAssigned, setTotalAssigned] = useState(0);
-  const navigate = useNavigate();
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const userId = storedUser?._id;
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/");
-    }
-  }, []);
-
-  // Fetch accounts
-  useEffect(() => {
-    const fetchAccounts = async () => {
-      try {
-        const res = await apiClient.get(`/accounts/${userId}`);
-        setAccounts(res.data);
-      } catch (err) {
-        console.error("Failed to fetch accounts:", err);
-      }
-    };
-    fetchAccounts();
-  }, []);
-
-  // Fetch saved budget
-  useEffect(() => {
-    const fetchBudget = async () => {
-      try {
-        const res = await apiClient.get(`/budgets/${userId}`);
-        if (res.data.length > 0) {
-          setBudgetCategories(res.data[0].categories || []);
-        }
-      } catch (err) {
-        console.error("Error fetching budget:", err);
-      }
-    };
-    fetchBudget();
-  }, []);
-
-  const saveBudget = async () => {
-    setisLoading(true);
-    try {
-      const formatted = budgetCategories.map((group) => ({
-        group: group.group,
-        items: group.items.map((item) => ({
-          name: item.name,
-          amount: item.amount,
-        })),
-      }));
-
-      await apiClient.post(`/budgets/${userId}`, {
-        categories: formatted,
-      });
-
-      toast.success("Budget saved!");
-    } catch (err) {
-      console.error("Failed to save budget:", err);
-      toast.error("Failed to save budget.");
-    } finally {
-      setisLoading(false);
-    }
-  };
-
-  const totalAvailableBalance = accounts.reduce((acc, a) => acc + a.balance, 0);
-  const currentBalance = totalAvailableBalance - totalAssigned;
-
-  const updateAccountBalance = (accountId, newBalance) => {
-    setAccounts((prev) =>
-      prev.map((acc) =>
-        acc._id === accountId ? { ...acc, balance: newBalance } : acc
-      )
-    );
-  };
+  const { accounts,
+    setAccounts,
+    updateAccountBalance,
+    budgetCategories,
+    setBudgetCategories,
+    totalAssigned,
+    setTotalAssigned,
+    currentBalance,
+    isLoading,
+    saveBudget,} = useFinance();
 
   return (
     <div className="relative">
