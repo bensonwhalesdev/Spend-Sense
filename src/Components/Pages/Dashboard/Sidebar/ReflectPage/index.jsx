@@ -44,26 +44,15 @@ const Reflect = () => {
     <div className="min-h-screen bg-[#12134C] text-[#D5D5E0] px-6 py-8">
       <div className="mb-6">
         <Link
-          to="/dashboard"
-          className="inline-block text-[#D5D5E0] hover:underline text-lg font-medium"
-        >
-          ← Back to Dashboard
-        </Link>
+                to="/dashboard"
+                className="flex items-center gap-2 text-white hover:text-[#D5D5E0] transition mb-6"
+              >
+                <ChevronLeft size={24} />
+                <span className="text-lg font-medium">Back to Dashboard</span>
+              </Link>
       </div>
 
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <ChevronLeft
-          size={32}
-          className="text-[#D5D5E0] cursor-pointer hover:text-white transition"
-          onClick={handlePrevMonth}
-        />
-        <div className="text-2xl font-semibold">{format(currentDate, "MMMM yyyy")}</div>
-        <ChevronRight
-          size={32}
-          className="text-[#D5D5E0] cursor-pointer hover:text-white transition"
-          onClick={handleNextMonth}
-        />
-      </div>
+      
 
       <div className="bg-[#1F1F4A] p-6 rounded-2xl shadow-xl">
         <ResponsiveContainer width="100%" height={400}>

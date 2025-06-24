@@ -10,6 +10,7 @@ import FAQSection from "./Components/LandingPage/Accordion";
 import Reflect from "./Components/Pages/Dashboard/Sidebar/ReflectPage";
 import AccountsOverview from "./Components/Pages/Dashboard/Sidebar/AllAccounts";
 import ViewUserProfile from "./Components/Pages/Dashboard/Sidebar/ViewUserProfile";
+import GuidePage from "./Components/Pages/Dashboard/Sidebar/Guide";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/reflect" element={<Reflect />} />
         <Route path="/allaccounts" element={<AccountsOverview />} />
         <Route path="/viewprofile" element={<ViewUserProfile />} />
+        <Route path="/guide" element={<GuidePage />} />
+        
       </Routes>
     </Router>
   );

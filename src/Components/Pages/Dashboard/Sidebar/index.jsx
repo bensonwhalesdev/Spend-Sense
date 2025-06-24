@@ -115,8 +115,10 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
         <div className="mb-4">
           <h2 className="text-lg font-bold">{`${userData.firstname}'s Plan`}</h2>
           <p className="text-sm text-gray-300">{userData.email}</p>
-          <div>
-            <Link to={'/viewprofile'} ><button className="mt-2 bg-[#2E3092] hover:bg-[#2E3070] text-white px-4 py-2 rounded cursor-pointer">View Profile</button></Link>
+          <div className="flex space-x-2">
+            <Link to={'/viewprofile'} ><button className="mt-2 bg-[#2E3092] hover:bg-[#2E3070] text-white px-2 py-2 rounded cursor-pointer">View Profile</button></Link>
+
+            <Link to={'/guide'} ><button className="mt-2 bg-[#2E3092] hover:bg-[#2E3070] text-white px-2 py-2 rounded cursor-pointer">Need Help?</button></Link>
           </div>
         </div>
       )}
