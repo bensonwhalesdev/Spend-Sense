@@ -54,7 +54,6 @@ const Header = () => {
           <ul className="flex flex-col gap-6 text-center mt-6">
             <Link to='/' className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Home</Link>
             <Link to='/whyspendsense' className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Why Spend-Sense</Link>
-            <li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">What You Get</li>
             <Link to="/contact"><li className="text-lg font-semibold text-[#1C1F58] cursor-pointer">Contact Us</li></Link>
           </ul>
 
