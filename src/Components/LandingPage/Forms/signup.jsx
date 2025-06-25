@@ -152,7 +152,7 @@ const SignUp = () => {
               <Eye size={20} />
             )}
           </span>
-          <p className="text-xs text-yellow-200 mt-1">
+          <p className="text-[15px] text-white mt-1">
             Password must be at least 8 characters and include at least 1 uppercase letter, 1 number, and 1 special character.
           </p>
         </div>
