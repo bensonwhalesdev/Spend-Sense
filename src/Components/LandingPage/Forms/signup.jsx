@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { apiClient } from "../../../lib/client";
+import { toast } from "sonner";
 
 const SignUp = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -31,7 +32,7 @@ const SignUp = () => {
     setisLoading(true);
 
     if (!passwordRegex.test(formData.password)) {
-      alert(
+      toast.error(
         "Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."
       );
       setisLoading(false);
