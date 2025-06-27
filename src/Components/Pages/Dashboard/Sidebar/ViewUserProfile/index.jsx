@@ -1,76 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
-import { apiClient } from "../../../../../lib/client";
-import { toast } from "sonner";
-import Swal from "sweetalert2";
+import useUserProfile from "./Hook/useUserProfile";
 
 const ViewUserProfile = () => {
-  const [user, setUser] = useState(null);
-  const [firstname, setFirstname] = useState("");
-  const [isLoading, setisLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState("profile");
-  const navigate = useNavigate();
+   const {
+    user,
+    firstname,
+    setFirstname,
+    isLoading,
+    activeTab,
+    setActiveTab,
+    handleDelete,
+    handleFirstnameUpdate,
+    handleBack,
+  } = useUserProfile();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) navigate("/");
-  }, [navigate]);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(storedUser);
-    if (storedUser?.firstname) {
-      setFirstname(storedUser.firstname);
-    }
-  }, []);
-
-  const handleDelete = async () => {
-    if (!user?._id) return;
-
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "This action is irreversible!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-    });
-
-    if (!result.isConfirmed) return;
-
-    setisLoading(true);
-
-    try {
-      await apiClient.delete(`/users/${user._id}`);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-
-      Swal.fire("Deleted!", "Your account has been deleted.", "success");
-      navigate("/");
-    } catch (err) {
-      console.error("Error deleting account:", err);
-      Swal.fire("Error", "Something went wrong while deleting your profile.", "error");
-    } finally {
-      setisLoading(false);
-    }
-  };
-
-  const handleBack = () => navigate("/dashboard");
-
-  const handleFirstnameUpdate = async () => {
-    try {
-      const res = await apiClient.put(`/users/${user._id}`, { firstname });
-      localStorage.setItem("user", JSON.stringify(res.data));
-      setUser(res.data);
-      toast.success("First name updated successfully!");
-    } catch (err) {
-      toast.error("Failed to update first name.");
-    }
-  };
-
-  if (!user) return <div className="h-screen flex items-center justify-center text-white text-xl">Loading profile...</div>;
+  if (!user) {
+    return (
+      <div className="h-screen flex items-center justify-center text-white text-xl">
+        Loading profile...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0F112B] text-white flex flex-col md:flex-row px-4 py-10 gap-6">
@@ -98,11 +48,11 @@ const ViewUserProfile = () => {
           <div className="space-y-8">
             <div>
               <p className="text-sm text-gray-400 mb-1 uppercase tracking-widest">First Name</p>
-              <h3 className="text-2xl font-semibold bg-[#2A2E7F] py-3 px-4 rounded-md">{user.firstname}</h3>
+              <h3 className="text-2xl w-70 font-semibold bg-[#2A2E7F] py-3 px-4 rounded-md">{user.firstname}</h3>
             </div>
             <div>
               <p className="text-sm text-gray-400 mb-1 uppercase tracking-widest">Email Address</p>
-              <h3 className="text-lg font-medium bg-[#2A2E7F] py-3 px-4 rounded-md">{user.email}</h3>
+              <h3 className="text-lg w-70 font-medium bg-[#2A2E7F] py-3 px-4 rounded-md">{user.email}</h3>
             </div>
           </div>
         )}
@@ -115,14 +65,13 @@ const ViewUserProfile = () => {
                 type="text"
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
-                className="w-full px-4 py-3 rounded-md bg-[#2A2E7F] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-70 px-4 py-3 rounded-md bg-[#2A2E7F] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <button
               onClick={handleFirstnameUpdate}
-              className="bg-blue-600 hover:bg-blue-700 transition duration-300 px-6 py-3 rounded-md font-medium shadow-md"
-            >
-              Save Changes
+              className="bg-blue-600 hover:bg-blue-700 transition duration-300 px-6 py-3 rounded-md font-medium shadow-md">
+             {isLoading ? "Saving..." : "Save Changes"}
             </button>
           </div>
         )}
@@ -133,8 +82,7 @@ const ViewUserProfile = () => {
             <button
               onClick={handleDelete}
               disabled={isLoading}
-              className="bg-red-500 hover:bg-red-700 transition-colors duration-300 py-3 px-6 text-white font-semibold rounded-lg shadow-md cursor-pointer"
-            >
+              className="bg-red-500 hover:bg-red-700 transition-colors duration-300 py-3 px-6 text-white font-semibold rounded-lg shadow-md cursor-pointer">
               {isLoading ? "Deleting..." : "Delete My Account"}
             </button>
           </div>
