@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AlertCircle } from "lucide-react";
+import Header from "../../LandingPage/Header";
 
 const NotFound = () => {
+
   return (
+    <>
+    <Header />
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="max-w-md text-center">
         <AlertCircle size={60} className="text-red-500 mb-4 mx-auto" />
@@ -20,6 +24,7 @@ const NotFound = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

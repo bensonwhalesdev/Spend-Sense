@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     setisLoading(true);
     try {
-      const response = await apiClient.post("/users/login", formData)
+      const response = await apiClient.post("/auth/login", formData)
       const { token, user } = response.data;
 
       localStorage.setItem("token", token);
