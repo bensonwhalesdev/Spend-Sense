@@ -43,9 +43,9 @@ const HeaderBar = ({ availableBalance, totalAssigned }) => {
       <div className="flex flex-col gap-2 flex-wrap">
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-2 flex-wrap">
-          <ChevronLeft size={30} className="text-gray-500 cursor-pointer" onClick={handlePrevMonth} />
+          {/* <ChevronLeft size={30} className="text-gray-500 cursor-pointer" onClick={handlePrevMonth} /> */}
           <div className="text-lg font-semibold">{format(currentDate, "MMMM yyyy")}</div>
-          <ChevronRight size={30} className="text-gray-500 cursor-pointer" onClick={handleNextMonth} />
+          {/* <ChevronRight size={30} className="text-gray-500 cursor-pointer" onClick={handleNextMonth} /> */}
         </div>
 
         <input

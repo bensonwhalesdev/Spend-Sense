@@ -128,12 +128,12 @@ const Sidebar = ({ accounts, setAccounts, updateAccountBalance }) => {
           <Home className="w-5 h-5" /> {!collapsed && <span>Plan</span>}
         </button>
         <div className="hover:bg-[#2E3092]">
-          <Link to="/reflect">
+          {/* <Link to="/reflect">
             <button className="flex items-center gap-3 p-2 rounded">
               <PieChart className="w-5 h-5" />{" "}
               {!collapsed && <span>Reflect</span>}
             </button>
-          </Link>
+          </Link> */}
         </div>
         <div className="hover:bg-[#2E3092]">
           <Link to="/allaccounts">
