@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../LandingPage/Header";
 import Footer from "../../LandingPage/Footer";
 import 'animate.css'
-import ContactForm from "./ContactForm";
+import ContactForm from "./contactForm";
 
 const ContactPage = () => {
   const imageurl = '/contact.avif';
